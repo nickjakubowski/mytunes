@@ -2,6 +2,7 @@
 var SongQueue = Songs.extend({
 
   initialize: function() {
+    this.on('dequeue', this.dequeue.bind(this));
   },
 
   playFirst: function() {
@@ -10,9 +11,13 @@ var SongQueue = Songs.extend({
     }
   },
 
-  dequeue: function() {
-    // unsure of synatx for removing first item with remove()
-    this.remove(this.at(0));
+  dequeue: function(song) {
+    console.log(song);
+    var currentFirst = this.at(0);
+    this.remove(song);
+    if (song === currentFirst) {
+      this.playFirst();
+    }
   }
 
 });
