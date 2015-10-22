@@ -5,8 +5,9 @@ var SongQueue = Songs.extend({
   },
 
   playFirst: function() {
-    this.at(0).play();
-    this.dequeue();
+    if (this.length > 0) {
+      this.at(0).play();
+    }
   },
 
   dequeue: function() {
